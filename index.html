@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Listen</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="titlebar">
+        <span class="brand" data-tauri-drag-region>Easy Listen</span>
+        <span class="track-name" id="trackName" data-tauri-drag-region>拖入音频，或点 ＋ 打开</span>
+        <div class="win-actions">
+          <button id="openBtn" class="icon-btn" title="打开音频文件">＋</button>
+          <button id="pinBtn" class="icon-btn active" title="取消置顶">📌</button>
+          <button id="minBtn" class="icon-btn" title="最小化">–</button>
+          <button id="closeBtn" class="icon-btn" title="关闭">×</button>
+        </div>
+      </header>
+
+      <section class="progress">
+        <span class="time" id="curTime">0:00</span>
+        <input id="seek" type="range" min="0" max="100" step="0.1" value="0" />
+        <span class="time" id="durTime">0:00</span>
+      </section>
+
+      <section class="transport">
+        <button class="skip" data-delta="-30" title="后退 30 秒">-30</button>
+        <button class="skip" data-delta="-10" title="后退 10 秒">-10</button>
+        <button class="skip" data-delta="-5" title="后退 5 秒">-5</button>
+        <button id="playBtn" class="play" title="播放 / 暂停 (Ctrl+Alt+Space)">▶</button>
+        <button class="skip" data-delta="5" title="前进 5 秒">+5</button>
+        <button class="skip" data-delta="10" title="前进 10 秒">+10</button>
+        <button class="skip" data-delta="30" title="前进 30 秒">+30</button>
+        <div class="volume">
+          <span class="vol-icon">🔊</span>
+          <input id="volume" type="range" min="0" max="100" value="80" title="音量" />
+        </div>
+      </section>
+
+      <section class="marks-bar">
+        <button id="markBtn" class="primary" title="标记当前位置 (Ctrl+Alt+M)">＋ 标记</button>
+        <button id="prevMark" class="ghost" title="上一个标记">◀｜</button>
+        <button id="nextMark" class="ghost" title="下一个标记">｜▶</button>
+        <button id="marksToggle" class="ghost marks-toggle" title="展开标记列表">标记 0 ▾</button>
+      </section>
+
+      <div id="marksPanel" class="marks-panel hidden">
+        <div class="marks-head">
+          <span>标记列表</span>
+          <button id="marksClose" class="ghost">收起</button>
+        </div>
+        <div class="marks-empty" id="marksEmpty">还没有标记。播放到需要记住的位置，点「＋ 标记」。</div>
+        <ul id="marksList"></ul>
+      </div>
+
+      <footer class="hint" id="hint">快捷键：Ctrl+Alt+Space 播放/暂停，Ctrl+Alt+←/→ 快退/快进 5 秒，Ctrl+Alt+M 标记</footer>
+    </div>
+    <audio id="audio" preload="metadata"></audio>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

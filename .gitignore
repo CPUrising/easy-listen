@@ -1,0 +1,23 @@
+# 依赖
+node_modules/
+
+# 前端构建产物
+dist/
+
+# Rust / Tauri 构建产物
+src-tauri/target/
+src-tauri/gen/
+
+# 日志与临时文件
+*.log
+*.tmp
+
+# 编辑器与系统文件
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Trae 生成的临时分享包
+.trae-html-share-packages/

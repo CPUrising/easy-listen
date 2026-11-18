@@ -1,0 +1,18 @@
+[package]
+name = "easy-listen"
+version = "0.1.0"
+description = "阅读时使用的悬浮音频播放器"
+authors = ["easy-listen"]
+edition = "2021"
+
+[lib]
+name = "easy_listen_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["protocol-asset"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-global-shortcut = "2"
